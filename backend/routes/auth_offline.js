@@ -265,44 +265,6 @@ router.post('/login', [
   }
 });
 
-/**
- * @swagger
- * /api/auth/users:
- *   get:
- *     summary: ดูรายการผู้ใช้ทั้งหมด (สำหรับทดสอบ)
- *     tags: [Authentication]
- *     responses:
- *       200:
- *         description: รายการผู้ใช้ทั้งหมด
- *         content:
- *           application/json:
- *             schema:
- *               type: object
- *               properties:
- *                 success:
- *                   type: boolean
- *                   example: true
- *                 message:
- *                   type: string
- *                   example: "ดึงข้อมูลผู้ใช้สำเร็จ"
- *                 data:
- *                   type: array
- *                   items:
- *                     $ref: '#/components/schemas/User'
- */
-// Get all users (for demo)
-router.get('/users', (req, res) => {
-  const usersWithoutPasswords = users.map(user => {
-    const userCopy = { ...user };
-    delete userCopy.password;
-    return userCopy;
-  });
 
-  res.json({
-    success: true,
-    message: 'ดึงข้อมูลผู้ใช้สำเร็จ',
-    data: usersWithoutPasswords
-  });
-});
 
 module.exports = router;
